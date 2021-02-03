@@ -22,7 +22,6 @@ final class DownloaderTest extends TestCase
 
     public function testDownloaderThrowsExceptionWhenCannotGetContentsWithoutErrorReporting(): void
     {
-
         $url = __DIR__ . '/file-not-found';
         $downloader = new Downloader();
 
