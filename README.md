@@ -231,22 +231,22 @@ y recuerda revisar el archivo de tareas pendientes [TODO][] y el archivo [CHANGE
 The `phpcfdi/cfdi-to-json` library is copyright © [PhpCfdi](https://www.phpcfdi.com)
 and licensed for use under the MIT License (MIT). Please see [LICENSE][] for more information.
 
-[contributing]: https://github.com/phpcfdi/cfdi-to-json/blob/master/CONTRIBUTING.md
-[changelog]: https://github.com/phpcfdi/cfdi-to-json/blob/master/docs/CHANGELOG.md
-[todo]: https://github.com/phpcfdi/cfdi-to-json/blob/master/docs/TODO.md
+[contributing]: https://github.com/phpcfdi/cfdi-to-json/blob/main/CONTRIBUTING.md
+[changelog]: https://github.com/phpcfdi/cfdi-to-json/blob/main/docs/CHANGELOG.md
+[todo]: https://github.com/phpcfdi/cfdi-to-json/blob/main/docs/TODO.md
 
 [source]: https://github.com/phpcfdi/cfdi-to-json
 [release]: https://github.com/phpcfdi/cfdi-to-json/releases
-[license]: https://github.com/phpcfdi/cfdi-to-json/blob/master/LICENSE
-[build]: https://travis-ci.com/phpcfdi/cfdi-to-json?branch=master
+[license]: https://github.com/phpcfdi/cfdi-to-json/blob/main/LICENSE
+[build]: https://travis-ci.com/phpcfdi/cfdi-to-json?branch=main
 [quality]: https://scrutinizer-ci.com/g/phpcfdi/cfdi-to-json/
-[coverage]: https://scrutinizer-ci.com/g/phpcfdi/cfdi-to-json/code-structure/master/code-coverage/src
+[coverage]: https://scrutinizer-ci.com/g/phpcfdi/cfdi-to-json/code-structure/main/code-coverage/src
 [downloads]: https://packagist.org/packages/phpcfdi/cfdi-to-json
 
 [badge-source]: http://img.shields.io/badge/source-phpcfdi/cfdi--to--json-blue?style=flat-square
 [badge-release]: https://img.shields.io/github/release/phpcfdi/cfdi-to-json?style=flat-square
 [badge-license]: https://img.shields.io/github/license/phpcfdi/cfdi-to-json?style=flat-square
-[badge-build]: https://img.shields.io/travis/com/phpcfdi/cfdi-to-json/master?style=flat-square
-[badge-quality]: https://img.shields.io/scrutinizer/g/phpcfdi/cfdi-to-json/master?style=flat-square
-[badge-coverage]: https://img.shields.io/scrutinizer/coverage/g/phpcfdi/cfdi-to-json/master?style=flat-square
+[badge-build]: https://img.shields.io/travis/com/phpcfdi/cfdi-to-json/main?style=flat-square
+[badge-quality]: https://img.shields.io/scrutinizer/g/phpcfdi/cfdi-to-json/main?style=flat-square
+[badge-coverage]: https://img.shields.io/scrutinizer/coverage/g/phpcfdi/cfdi-to-json/main?style=flat-square
 [badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/cfdi-to-json?style=flat-square
