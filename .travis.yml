@@ -1,0 +1,28 @@
+language: php
+
+# php compatibility
+php: ["7.3", "7.4", "8.0"]
+
+cache:
+  - directories:
+    - $HOME/.composer
+
+env:
+  global:
+    - PHP_CS_FIXER_IGNORE_ENV=yes
+
+before_script:
+  - phpenv config-rm xdebug.ini || true
+  - travis_retry composer self-update --no-interaction --2
+  - travis_retry composer upgrade --no-interaction --prefer-dist
+
+script:
+  - vendor/bin/php-cs-fixer fix --dry-run --verbose
+  - vendor/bin/phpcbf --colors -sp src/ tests/ bin/
+  - vendor/bin/phpunit --testdox --verbose
+  - vendor/bin/phpstan analyse --no-progress --verbose --level max src/ tests/  bin/
+
+notifications:
+  email:
+    if: branch = master
+

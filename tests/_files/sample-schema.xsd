@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://tempuri.org/document" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="Document">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Summary" minOccurs="1" maxOccurs="1"/>
+        <xs:element name="Chapter" minOccurs="1" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Section" minOccurs="0" maxOccurs="unbounded">
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Authors" minOccurs="1" maxOccurs="1">
+          <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+              <xs:element name="Author" minOccurs="0"/>
+              <xs:element name="Coauthor" minOccurs="0"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Review">
+          <xs:complexType>
+            <xs:choice maxOccurs="unbounded">
+              <xs:element name="Status"/>
+            </xs:choice>
+          </xs:complexType>
+        </xs:element>
+
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

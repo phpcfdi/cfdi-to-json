@@ -1,0 +1,60 @@
+{
+    "name": "phpcfdi/cfdi-to-json",
+    "description": "Convert CFDI to JSON",
+    "keywords": ["cfdi", "json", "mexico", "sat"],
+    "homepage": "https://github.com/phpcfdi/cfdi-to-json",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos C Soto",
+            "email": "eclipxe13@gmail.com",
+            "homepage": "https://github.com/phpcfdi/cfdi-to-json"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-dom": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3",
+        "squizlabs/php_codesniffer": "^3.0",
+        "friendsofphp/php-cs-fixer": "^2.4",
+        "phpstan/phpstan": "^0.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpCfdi\\CfdiToJson\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpCfdi\\CfdiToJson\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "dev:build": ["@dev:fix-style", "@dev:check-style", "@dev:test"],
+        "dev:check-style": [
+            "vendor/bin/php-cs-fixer fix --dry-run --verbose",
+            "vendor/bin/phpcs --colors -sp src/ tests/ bin/"
+        ],
+        "dev:fix-style": [
+            "vendor/bin/php-cs-fixer fix --verbose",
+            "vendor/bin/phpcbf --colors -sp src/ tests/ bin/"
+        ],
+        "dev:test": [
+            "vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "vendor/bin/phpstan analyse --verbose --level max src/ tests/ bin/"
+        ],
+        "dev:coverage": [
+            "@php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-html build/coverage/html/"
+        ]
+    },
+    "scripts-descriptions": {
+        "dev:build": "DEV: run dev:fix-style and dev:tests, run before pull request",
+        "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
+        "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",
+        "dev:test": "DEV: run phpunit and phpstan",
+        "dev:coverage": "DEV: run phpunit with xdebug and storage coverage in build/coverage/html/"
+    }
+}
