@@ -6,6 +6,7 @@ namespace PhpCfdi\CfdiToJson;
 
 use JsonException;
 use LogicException;
+use Throwable;
 
 final class Factory
 {
@@ -35,7 +36,11 @@ final class Factory
 
     public function createUnboundedOccursPathsUsingJsonFile(string $sourceFile): UnboundedOccursPaths
     {
-        $contents = file_get_contents($sourceFile);
+        try {
+            $contents = file_get_contents($sourceFile);
+        } catch (Throwable $exception) {
+            throw new LogicException("Unable to open file $sourceFile", 0, $exception);
+        }
         if (false === $contents) {
             throw new LogicException("Unable to open file $sourceFile");
         }
