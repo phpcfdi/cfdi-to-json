@@ -62,6 +62,9 @@ final class XsdMaxOccursFromNsRegistry
         foreach ($entries as $index => $entry) {
             $paths[] = $this->obtainPathsFromEntry($index, $entry);
         }
+        if ([] === $paths) {
+            return [];
+        }
         return array_merge(...$paths);
     }
 

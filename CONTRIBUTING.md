@@ -81,5 +81,5 @@ composer dev:build
 [phpCfdi]:      https://github.com/phpcfdi/
 [project]:      https://github.com/phpcfdi/cfdi-to-json
 [contributors]: https://github.com/phpcfdi/cfdi-to-json/graphs/contributors
-[coc]:          https://github.com/phpcfdi/cfdi-to-json/blob/master/CODE_OF_CONDUCT.md
+[coc]:          https://github.com/phpcfdi/cfdi-to-json/blob/main/CODE_OF_CONDUCT.md
 [issues]:       https://github.com/phpcfdi/cfdi-to-json/issues
