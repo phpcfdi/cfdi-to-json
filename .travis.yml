@@ -21,6 +21,7 @@ script:
   - vendor/bin/phpcbf --colors -sp src/ tests/ bin/
   - vendor/bin/phpunit --testdox --verbose
   - vendor/bin/phpstan analyse --no-progress --verbose --level max src/ tests/  bin/
+  - bash bin/check-current-max-occurs-paths.bash
 
 notifications:
   email:

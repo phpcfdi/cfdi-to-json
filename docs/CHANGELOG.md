@@ -14,6 +14,7 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 ### Versión 0.1.1 2021-02-04
 
 - Conseguir el 100% de testeo.
+- Agregar a Travis-CI la comprobación de que el archivo `src/UnboundedOccursPaths.json` no ha cambiado.
 
 ### Versión 0.1.0 2021-02-02 ¡Feliz cumpleaños Dany!
 
