@@ -8,10 +8,6 @@ cache:
     - $HOME/.composer
     - $HOME/.phive
 
-env:
-  global:
-    - PHP_CS_FIXER_IGNORE_ENV=yes
-
 before_script:
   - phpenv config-rm xdebug.ini || true
   - travis_retry composer self-update --no-interaction --2
@@ -20,7 +16,7 @@ before_script:
   - ./phive install --force-accept-unsigned --trust-gpg-keys 0x4AA394086372C20A,0x31C7E470E2138192,0xE82B2FB314E9906E,0xCF1A108D0E7AE720,0xC5095986493B4AA0
 
 script:
-  - tools/php-cs-fixer fix --dry-run --verbose
+  - PHP_CS_FIXER_IGNORE_ENV=yes tools/php-cs-fixer fix --dry-run --verbose
   - tools/phpcs --colors -sp src/ tests/ bin/
   - vendor/bin/phpunit --testdox --verbose
   - tools/phpstan analyse --no-progress --verbose --level max src/ tests/  bin/
