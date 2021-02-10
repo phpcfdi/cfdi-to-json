@@ -1,0 +1,15 @@
+{
+    "source": {
+        "directories": [
+            "bin",
+            "src"
+        ]
+    },
+    "logs": {
+        "text": "build\/infection.log"
+    },
+    "mutators": {
+        "@default": true
+    },
+    "initialTestsPhpOptions": "-dzend_extension=xdebug.so"
+}
