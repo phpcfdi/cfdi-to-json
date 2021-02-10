@@ -25,7 +25,7 @@ final class Children
     public function append(Node $child): void
     {
         $this->children[] = $child;
-        $this->childrenCountByKey[$child->getKey()] = $this->getChildrenCountByKey($child->getKey());
+        $this->childrenCountByKey[$child->getKey()] = $this->getChildrenCountByKey($child->getKey()) + 1;
     }
 
     public function isChildrenMultiple(Node $child): bool
