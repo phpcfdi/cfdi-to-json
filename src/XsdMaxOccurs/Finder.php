@@ -17,9 +17,9 @@ final class Finder implements FinderInterface
         $document->loadXML($xsdContents);
 
         return array_merge(
-            $this->obtainPathsForXPathQuery($document, '//xs:element[@maxOccurs="unbounded"]'),
-            $this->obtainPathsForXPathQuery($document, '//xs:sequence[@maxOccurs="unbounded"]/xs:element'),
-            $this->obtainPathsForXPathQuery($document, '//xs:choice[@maxOccurs="unbounded"]/xs:element'),
+            $this->obtainPathsForXPathQuery($document, '//x:element[@maxOccurs="unbounded"]'),
+            $this->obtainPathsForXPathQuery($document, '//x:sequence[@maxOccurs="unbounded"]/x:element'),
+            $this->obtainPathsForXPathQuery($document, '//x:choice[@maxOccurs="unbounded"]/x:element'),
         );
     }
 
@@ -32,7 +32,7 @@ final class Finder implements FinderInterface
     {
         $paths = [];
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('xs', 'http://www.w3.org/2001/XMLSchema');
+        $xpath->registerNamespace('x', 'http://www.w3.org/2001/XMLSchema');
         $nodes = $xpath->query($query) ?: new DOMNodeList();
         foreach ($nodes as $node) {
             if ($node instanceof DOMElement) {
