@@ -4,4 +4,4 @@
 
 - ¿Los elementos `Comprobante/Complemento` deberían colapsarse?
 
-- Usar infection
+- Hacer que `infection` se ejecute con un mínimo requerido en la integración contínua.

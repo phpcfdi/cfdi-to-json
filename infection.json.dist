@@ -1,7 +1,6 @@
 {
     "source": {
         "directories": [
-            "bin",
             "src"
         ]
     },
@@ -11,5 +10,5 @@
     "mutators": {
         "@default": true
     },
-    "initialTestsPhpOptions": "-dzend_extension=xdebug.so"
+    "initialTestsPhpOptions": "-dzend_extension=xdebug.so -dxdebug.mode=coverage"
 }

@@ -83,6 +83,9 @@ composer dev:test
 
 # Ejecución todo en uno, corregir estilo, verificar estilo y correr pruebas
 composer dev:build
+
+# Opcional: correr las pruebas de mutación
+composer dev:infection
 ```
 
 [phpCfdi]:      https://github.com/phpcfdi/
