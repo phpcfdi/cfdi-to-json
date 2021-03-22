@@ -11,11 +11,13 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Listado de cambios
 
-### Versión 0.1.1 2021-02-04
+### Versión 0.2.0 2021-03-22
 
+- Se extrae la lógica del conteo de hijos de `Nodes\Children` a `Nodes\KeysCounter`.
 - Conseguir el 100% de testeo.
 - Agregar a Travis-CI la comprobación de que el archivo `src/UnboundedOccursPaths.json` no ha cambiado.
 - Usar `phive` para las herramientas de desarrollo.
+- Se agrega `infection` para correr pruebas de mutación. No es mandatorio por el momento.
 
 ### Versión 0.1.0 2021-02-02 ¡Feliz cumpleaños Dany!
 
