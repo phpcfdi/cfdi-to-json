@@ -32,19 +32,19 @@
     "scripts": {
         "dev:build": ["@dev:fix-style", "@dev:check-style", "@dev:test"],
         "dev:check-style": [
-            "tools/php-cs-fixer fix --dry-run --verbose",
-            "tools/phpcs --colors -sp src/ tests/ bin/"
+            "@php tools/php-cs-fixer fix --dry-run --verbose",
+            "@php tools/phpcs --colors -sp src/ tests/ bin/"
         ],
         "dev:fix-style": [
-            "tools/php-cs-fixer fix --verbose",
-            "tools/phpcbf --colors -sp src/ tests/ bin/"
+            "@php tools/php-cs-fixer fix --verbose",
+            "@php tools/phpcbf --colors -sp src/ tests/ bin/"
         ],
         "dev:test": [
-            "vendor/bin/phpunit --testdox --verbose --stop-on-failure",
-            "tools/phpstan analyse --verbose --level max src/ tests/ bin/"
+            "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "@php tools/phpstan analyse --verbose --level max src/ tests/ bin/"
         ],
         "dev:coverage": [
-            "@php -dzend_extension=xdebug.so vendor/bin/phpunit --coverage-html build/coverage/html/"
+            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-xml build/coverage/xml/ --coverage-html build/coverage/html/"
         ],
         "dev:infection": [
             "@php tools/infection --show-mutations --no-progress"
@@ -54,7 +54,7 @@
         "dev:build": "DEV: run dev:fix-style and dev:tests, run before pull request",
         "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
         "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",
-        "dev:test": "DEV: run phpunit and phpstan",
+        "dev:test": "DEV: run dev:fix-style, phpunit and phpstan",
         "dev:coverage": "DEV: run phpunit with xdebug and storage coverage in build/coverage/html/",
         "dev:infection": "DEV: run mutation tests using infection"
     }
