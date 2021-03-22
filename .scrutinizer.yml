@@ -7,8 +7,7 @@ filter:
 build:
   dependencies:
     override:
-      - composer self-update --no-interaction --no-progress
-      - composer install --no-interaction --prefer-dist
+      - composer update --no-interaction --prefer-dist
   nodes:
     analysis: # see https://scrutinizer-ci.com/docs/tools/php/php-scrutinizer/
       project_setup:
