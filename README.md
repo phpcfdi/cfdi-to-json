@@ -206,6 +206,9 @@ Este listado se puede generar utilizando el archivo `bin/max-occurs-paths.php`, 
 de nombres del SAT de PhpCfdi [`phpcfdi/sat-ns-registry`](https://github.com/phpcfdi/sat-ns-registry) así como todos
 los archivos XSD para interpretar las rutas que contienen `maxOccurs="unbounded"`.
 
+Desde 2021-03-22 se ha agregado un evento desde `phpcfdi/sat-ns-registry` para que notifique a este mismo repositorio
+de que el registro de espacios de nombres cambió.
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.
@@ -238,7 +241,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [source]: https://github.com/phpcfdi/cfdi-to-json
 [release]: https://github.com/phpcfdi/cfdi-to-json/releases
 [license]: https://github.com/phpcfdi/cfdi-to-json/blob/main/LICENSE
-[build]: https://travis-ci.com/phpcfdi/cfdi-to-json?branch=main
+[build]: https://github.com/phpcfdi/cfdi-to-json/actions/workflows/build.yml?query=branch:main
 [quality]: https://scrutinizer-ci.com/g/phpcfdi/cfdi-to-json/
 [coverage]: https://scrutinizer-ci.com/g/phpcfdi/cfdi-to-json/code-structure/main/code-coverage/src
 [downloads]: https://packagist.org/packages/phpcfdi/cfdi-to-json
@@ -247,6 +250,6 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [badge-release]: https://img.shields.io/github/release/phpcfdi/cfdi-to-json?style=flat-square
 [badge-license]: https://img.shields.io/github/license/phpcfdi/cfdi-to-json?style=flat-square
 [badge-build]: https://img.shields.io/travis/com/phpcfdi/cfdi-to-json/main?style=flat-square
-[badge-quality]: https://img.shields.io/scrutinizer/g/phpcfdi/cfdi-to-json/main?style=flat-square
+[badge-quality]: https://img.shields.io/github/workflow/status/phpcfdi/cfdi-to-json/build/main?style=flat-square
 [badge-coverage]: https://img.shields.io/scrutinizer/coverage/g/phpcfdi/cfdi-to-json/main?style=flat-square
 [badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/cfdi-to-json?style=flat-square
