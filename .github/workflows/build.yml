@@ -1,0 +1,76 @@
+name: build
+on:
+  pull_request:
+  push:
+  schedule:
+    - cron: '0 16 * * 0' # sunday 16:00
+
+jobs:
+  build:
+    name: PHP ${{ matrix.php-versions }}
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0']
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # see https://github.com/marketplace/actions/setup-php-action
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: dom, json
+          coverage: none
+          tools: composer:v2, cs2pr, phive
+        env:
+          fail-fast: true
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Composer cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Phive cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.phive
+          key: ${{ runner.os }}-phive-${{ hashFiles('**/.phive/phars.xml') }}
+          restore-keys: ${{ runner.os }}-phive-
+
+      - name: Install project dependencies
+        run: composer upgrade --no-interaction --no-progress --prefer-dist
+
+      - name: Install phive dependencies
+        run: |
+          phive install --force-accept-unsigned --trust-gpg-keys 0x4AA394086372C20A,0x31C7E470E2138192,0xE82B2FB314E9906E,0xCF1A108D0E7AE720,0xC5095986493B4AA0
+          git checkout -- .phive/phars.xml
+
+      - name: Check src/UnboundedOccursPaths.json
+        run: bash bin/check-current-max-occurs-paths.bash
+
+      - name: Code style (phpcs)
+        run: tools/phpcs -q --report=checkstyle src/ tests/ | cs2pr
+
+      - name: Code style (php-cs-fixer)
+        run: tools/php-cs-fixer fix --dry-run --format=checkstyle | cs2pr
+
+      - name: Tests (phpunit)
+        run: vendor/bin/phpunit --testdox --verbose
+
+      - name: Code analysis (phpstan)
+        run: tools/phpstan analyse --level max --no-progress --verbose src/ tests/
+
+      - name: Mutation testing (infection)
+        run: phpdbg -qrr tools/infection --no-progress --no-interaction --show-mutations --logger-github
+        continue-on-error: true

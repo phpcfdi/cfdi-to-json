@@ -1,0 +1,48 @@
+name: sat-ns-registry-update
+on:
+  repository_dispatch:
+    types:
+      - sat-ns-registry-update
+
+jobs:
+  update:
+    name: "Update UnboundedOccursPaths.json"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP 8.0
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.0"
+          extensions: dom, json
+          coverage: none
+          tools: composer:v2
+        env:
+          fail-fast: true
+
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Composer cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install project dependencies
+        run: composer upgrade --no-interaction --no-progress --prefer-dist --no-dev
+
+      - name: Update src/UnboundedOccursPaths.json
+        run: php bin/max-occurs-paths.php > src/UnboundedOccursPaths.json
+
+      # see https://github.com/peter-evans/create-pull-request
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v3
+        with:
+          commit-message: "Automatic update for src/UnboundedOccursPaths.json"
+          title: "Update src/UnboundedOccursPaths.json"
