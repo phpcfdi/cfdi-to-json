@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace PhpCfdi\CfdiToJson\XsdMaxOccurs;
 
 use RuntimeException;
-use Throwable;
 
 final class Downloader implements DownloaderInterface
 {

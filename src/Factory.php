@@ -6,7 +6,6 @@ namespace PhpCfdi\CfdiToJson;
 
 use JsonException;
 use LogicException;
-use Throwable;
 
 final class Factory
 {
