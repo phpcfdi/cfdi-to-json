@@ -249,7 +249,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [badge-source]: http://img.shields.io/badge/source-phpcfdi/cfdi--to--json-blue?style=flat-square
 [badge-release]: https://img.shields.io/github/release/phpcfdi/cfdi-to-json?style=flat-square
 [badge-license]: https://img.shields.io/github/license/phpcfdi/cfdi-to-json?style=flat-square
-[badge-build]: https://img.shields.io/travis/com/phpcfdi/cfdi-to-json/main?style=flat-square
-[badge-quality]: https://img.shields.io/github/workflow/status/phpcfdi/cfdi-to-json/build/main?style=flat-square
+[badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/cfdi-to-json/build/main?style=flat-square
+[badge-quality]: https://img.shields.io/scrutinizer/g/phpcfdi/cfdi-to-json/master?style=flat-square
 [badge-coverage]: https://img.shields.io/scrutinizer/coverage/g/phpcfdi/cfdi-to-json/main?style=flat-square
 [badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/cfdi-to-json?style=flat-square
