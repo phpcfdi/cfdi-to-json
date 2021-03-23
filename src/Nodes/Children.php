@@ -14,29 +14,25 @@ final class Children
     /** @var UnboundedOccursPaths */
     private $unboundedOccursPaths;
 
-    /** @var array<string, int> */
-    private $childrenCountByKey = [];
+    /** @var KeysCounter */
+    private $keysCounter;
 
     public function __construct(UnboundedOccursPaths $unboundedOccursPaths)
     {
         $this->unboundedOccursPaths = $unboundedOccursPaths;
+        $this->keysCounter = new KeysCounter();
     }
 
     public function append(Node $child): void
     {
         $this->children[] = $child;
-        $this->childrenCountByKey[$child->getKey()] = $this->getChildrenCountByKey($child->getKey());
+        $this->keysCounter->register($child->getKey());
     }
 
     public function isChildrenMultiple(Node $child): bool
     {
-        return ($this->getChildrenCountByKey($child->getKey()) > 1)
+        return $this->keysCounter->hasMany($child->getKey())
             || $this->unboundedOccursPaths->match($child->getPath());
-    }
-
-    private function getChildrenCountByKey(string $key): int
-    {
-        return $this->childrenCountByKey[$key] ?? 0;
     }
 
     /** @return array<string, string|array> */

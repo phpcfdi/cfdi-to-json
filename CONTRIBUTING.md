@@ -62,8 +62,15 @@ Considera las siguientes directrices:
 ## Proceso de construcción
 
 ```shell
+# Instala phive, sigue las indicaciones seguras de https://phar.io/#Install o la forma insegura:
+wget https://phar.io/releases/phive.phar -O ~/.local/bin/phive
+
+## Si no se han instalado las herramientas previamente
+phive install --force-accept-unsigned --trust-gpg-keys 0x4AA394086372C20A,0x31C7E470E2138192,0xE82B2FB314E9906E,0xCF1A108D0E7AE720,0xC5095986493B4AA0
+
 # Actualiza tus dependencias
 composer update
+phive update
 
 # Verificación de estilo de código
 composer dev:check-style
@@ -76,6 +83,9 @@ composer dev:test
 
 # Ejecución todo en uno, corregir estilo, verificar estilo y correr pruebas
 composer dev:build
+
+# Opcional: correr las pruebas de mutación
+composer dev:infection
 ```
 
 [phpCfdi]:      https://github.com/phpcfdi/

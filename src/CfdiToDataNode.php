@@ -15,9 +15,14 @@ final class CfdiToDataNode
     /** @var UnboundedOccursPaths */
     private $unboundedOccursPaths;
 
-    public function __construct(UnboundedOccursPaths $multipleChildrenPaths)
+    public function __construct(UnboundedOccursPaths $unboundedOccursPaths)
     {
-        $this->unboundedOccursPaths = $multipleChildrenPaths;
+        $this->unboundedOccursPaths = $unboundedOccursPaths;
+    }
+
+    public function getUnboundedOccursPaths(): UnboundedOccursPaths
+    {
+        return $this->unboundedOccursPaths;
     }
 
     public function convertXmlContent(string $xmlContents): Nodes\Node

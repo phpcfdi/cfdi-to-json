@@ -22,16 +22,14 @@ final class DownloaderTest extends TestCase
 
     public function testDownloaderThrowsExceptionWhenCannotGetContentsWithoutErrorReporting(): void
     {
-        $previousErrorReporting = error_reporting(0);
-
         $url = __DIR__ . '/file-not-found';
         $downloader = new Downloader();
 
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage("Unable to get $url contents");
-        $downloader->get($url);
 
-        error_reporting($previousErrorReporting);
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        @$downloader->get($url);
     }
 
     public function testDownloaderThrowsExceptionWhenContentIsEmpty(): void

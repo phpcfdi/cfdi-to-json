@@ -57,8 +57,10 @@ final class ConverterTest extends TestCase
     public function testJsonConverter(): void
     {
         $xmlContents = $this->fileContents('cfdi-example.xml');
+        $jsonFile = $this->filePath('cfdi-example.json');
         /** @noinspection PhpUnhandledExceptionInspection */
         $json = JsonConverter::convertToJson($xmlContents);
-        $this->assertJsonStringEqualsJsonString(json_encode($this->data) ?: '', $json);
+        $this->assertJsonStringEqualsJsonFile($jsonFile, $json);
+        $this->assertStringEqualsFile($jsonFile, $json, 'Check that the default format is preserved');
     }
 }
