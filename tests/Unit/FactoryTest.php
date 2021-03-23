@@ -32,9 +32,8 @@ final class FactoryTest extends TestCase
     public function testCreateUnboundedOccursPathsUsingJsonFileUsingInvalidFileWithErrorReporting(): void
     {
         $factory = new Factory(new UnboundedOccursPaths());
-        $this->expectException(LogicException::class);
-        $this->expectExceptionMessage('Unable to open file');
-        $factory->createUnboundedOccursPathsUsingJsonFile(__DIR__);
+        $this->expectWarning();
+        $factory->createUnboundedOccursPathsUsingJsonFile(__DIR__ . '/not-found');
     }
 
     public function testCreateUnboundedOccursPathsUsingJsonFileUsingInvalidFileWithoutErrorReporting(): void
@@ -44,12 +43,8 @@ final class FactoryTest extends TestCase
         $this->expectException(LogicException::class);
         $this->expectExceptionMessage('Unable to open file');
 
-        $previousErrorReporting = error_reporting(0);
-        try {
-            $factory->createUnboundedOccursPathsUsingJsonFile(__DIR__ . '/not-found');
-        } finally {
-            error_reporting($previousErrorReporting);
-        }
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        @$factory->createUnboundedOccursPathsUsingJsonFile(__DIR__ . '/not-found');
     }
 
     public function testCreateUnboundedOccursPathsUsingJsonFileUsingInvalidContents(): void

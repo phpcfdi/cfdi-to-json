@@ -28,12 +28,8 @@ final class DownloaderTest extends TestCase
         $this->expectException(RuntimeException::class);
         $this->expectExceptionMessage("Unable to get $url contents");
 
-        $previousErrorReporting = error_reporting(0);
-        try {
-            $downloader->get($url);
-        } finally {
-            error_reporting($previousErrorReporting);
-        }
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        @$downloader->get($url);
     }
 
     public function testDownloaderThrowsExceptionWhenContentIsEmpty(): void

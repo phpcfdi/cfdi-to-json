@@ -14,6 +14,7 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 ### Versión 0.2.0 2021-03-22
 
 - Se extrae la lógica del conteo de hijos de `Nodes\Children` a `Nodes\KeysCounter`.
+- Se corrigen los test y las llamadas de `file_get_contents`.
 - Conseguir el 100% de testeo.
 - Agregar a Travis-CI la comprobación de que el archivo `src/UnboundedOccursPaths.json` no ha cambiado.
 - Usar `phive` para las herramientas de desarrollo.

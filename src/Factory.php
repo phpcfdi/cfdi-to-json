@@ -36,11 +36,7 @@ final class Factory
 
     public function createUnboundedOccursPathsUsingJsonFile(string $sourceFile): UnboundedOccursPaths
     {
-        try {
-            $contents = file_get_contents($sourceFile);
-        } catch (Throwable $exception) {
-            throw new LogicException("Unable to open file $sourceFile", 0, $exception);
-        }
+        $contents = file_get_contents($sourceFile);
         if (false === $contents) {
             throw new LogicException("Unable to open file $sourceFile");
         }
