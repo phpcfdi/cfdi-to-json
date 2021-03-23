@@ -49,9 +49,6 @@ jobs:
           branch: automated/sat-ns-registry-update
           commit-message: "Automatic update for src/UnboundedOccursPaths.json"
           title: "Update src/UnboundedOccursPaths.json"
-          team-reviewers: |
-            owners
-            maintainers
           delete-branch: true
           draft: false
 
