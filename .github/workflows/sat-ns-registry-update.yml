@@ -42,7 +42,21 @@ jobs:
 
       # see https://github.com/peter-evans/create-pull-request
       - name: Create PR
+        id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          branch: automated/sat-ns-registry-update
           commit-message: "Automatic update for src/UnboundedOccursPaths.json"
           title: "Update src/UnboundedOccursPaths.json"
+          team-reviewers: |
+            owners
+            maintainers
+          delete-branch: true
+          draft: false
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          echo "Pull Request Operation - ${{ steps.cpr.outputs.pull-request-operation }}"

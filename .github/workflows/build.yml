@@ -2,6 +2,12 @@ name: build
 on:
   pull_request:
   push:
+    paths:
+      - "bin/**"
+      - "src/**"
+      - "tests/**"
+      - "composer.json"
+      - "*.dist"
   schedule:
     - cron: '0 16 * * 0' # sunday 16:00
 
@@ -60,7 +66,7 @@ jobs:
         run: bash bin/check-current-max-occurs-paths.bash
 
       - name: Code style (phpcs)
-        run: tools/phpcs -q --report=checkstyle src/ tests/ | cs2pr
+        run: tools/phpcs -q --report=checkstyle bin/ src/ tests/ | cs2pr
 
       - name: Code style (php-cs-fixer)
         run: tools/php-cs-fixer fix --dry-run --format=checkstyle | cs2pr
@@ -69,7 +75,7 @@ jobs:
         run: vendor/bin/phpunit --testdox --verbose
 
       - name: Code analysis (phpstan)
-        run: tools/phpstan analyse --level max --no-progress --verbose src/ tests/
+        run: tools/phpstan analyse --level max --no-progress --verbose bin/ src/ tests/
 
       - name: Mutation testing (infection)
         run: phpdbg -qrr tools/infection --no-progress --no-interaction --show-mutations --logger-github
