@@ -49,7 +49,7 @@ final class CfdiToDataNode
         foreach ($element->childNodes as $childElement) {
             if ($childElement instanceof DOMElement) {
                 $convertionChildren->append(
-                    $this->convertElementoToDataNode($childElement, $path)
+                    $this->convertElementoToDataNode($childElement, $path),
                 );
             }
         }

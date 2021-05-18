@@ -9,13 +9,21 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Cambios no liberados en una versión
 
-### GitHub Actions
+No hay cambios no liberados. 
 
+## Listado de cambios
+
+### Versión 0.2.1 2021-05-17
+
+- Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento `CartaPorte`.
+
+Cambios en desarrollo
+
+- Se actualizó la herramienta `php-cs-fixer` a `^3.0`.
+- Se actualizó el archivo de configuración de PHPUnit a uno más apegado al recomendado.
 - Se agrega a GitHub Actions un flujo de trabajo de construcción del proyecto.
 - Se agrega a GitHub Actions un flujo de trabajo de actualización y PR desde `phpcfdi/sat-ns-registry`.
 - Se elimina la integración con Travis-CI. Gracias.
-
-## Listado de cambios
 
 ### Versión 0.2.0 2021-03-22
 

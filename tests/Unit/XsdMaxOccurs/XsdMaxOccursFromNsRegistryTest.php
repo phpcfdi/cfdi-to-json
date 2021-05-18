@@ -38,7 +38,7 @@ final class XsdMaxOccursFromNsRegistryTest extends TestCase
             [
                 '/second/foo/bar/baz',
                 '/second/foo/bar/xee',
-            ]
+            ],
         );
 
         /** @var DownloaderInterface&MockObject $downloader */

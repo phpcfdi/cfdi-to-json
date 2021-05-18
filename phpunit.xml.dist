@@ -1,16 +1,21 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
-    cacheResultFile="build/phpunit.result.cache"
-    colors="true"
+    bootstrap="tests/bootstrap.php"
+    cacheResultFile="build/phpunit.cache/test-results"
+    executionOrder="depends,defects"
+    failOnRisky="true"
+    failOnWarning="true"
     verbose="true"
-    bootstrap="tests/bootstrap.php">
+    colors="true">
+
     <testsuites>
-        <testsuite name="Default">
-            <directory>./tests/</directory>
+        <testsuite name="default">
+            <directory suffix="Test.php">./tests/</directory>
         </testsuite>
     </testsuites>
-    <coverage>
+
+    <coverage cacheDirectory="build/phpunit.cache/code-coverage" processUncoveredFiles="true">
         <include>
             <directory suffix=".php">./src/</directory>
         </include>
