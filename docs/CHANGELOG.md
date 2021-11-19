@@ -13,6 +13,10 @@ No hay cambios no liberados.
 
 ## Listado de cambios
 
+### Versión 0.2.2 2021-11-18
+
+- Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento `CartaPorte 2.0`.
+
 ### Versión 0.2.1 2021-05-17
 
 - Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento `CartaPorte`.
