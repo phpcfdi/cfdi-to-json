@@ -122,6 +122,7 @@
     "/GastosHidrocarburos/Erogacion/CentroCostos",
     "/GastosHidrocarburos/Erogacion/CentroCostos/Yacimientos",
     "/GastosHidrocarburos/Erogacion/CentroCostos/Yacimientos/Pozos",
+    "/IngresosHidrocarburos/DocumentoRelacionado",
     "/CartaPorte/Ubicaciones/Ubicacion",
     "/CartaPorte/Mercancias/Mercancia",
     "/CartaPorte/Mercancias/Mercancia/CantidadTransporta",
