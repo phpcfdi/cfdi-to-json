@@ -42,7 +42,10 @@ final class Node
         return $this->path;
     }
 
-    /** @return array<string, string|array> */
+    /**
+     * @return array<string, string|array>
+     * @phpstan-ignore-next-line
+     */
     public function toArray(): array
     {
         return $this->attributes + $this->children->toArray();

@@ -9,7 +9,10 @@ use PhpCfdi\CfdiToJson\Tests\TestCase;
 
 final class ConverterTest extends TestCase
 {
-    /** @var array<string, mixed> */
+    /**
+     * @var array
+     * @phpstan-ignore-next-line
+     */
     private $data;
 
     protected function setUp(): void

@@ -6,7 +6,7 @@ use PhpCfdi\CfdiToJson\XsdMaxOccurs\XsdMaxOccursFromNsRegistry;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-exit(call_user_func(new class(...$argv) {
+exit(call_user_func(new class (...$argv) {
     /** @var string */
     private $commandName;
 

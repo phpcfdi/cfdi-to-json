@@ -35,7 +35,10 @@ final class Children
             || $this->unboundedOccursPaths->match($child->getPath());
     }
 
-    /** @return array<string, string|array> */
+    /**
+     * @return array
+     * @phpstan-ignore-next-line
+     */
     public function toArray(): array
     {
         $children = [];

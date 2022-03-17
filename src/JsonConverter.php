@@ -28,7 +28,8 @@ final class JsonConverter
      * Helper function to convert a Cfdi XML contents to JSON string
      *
      * @param string $cfdi
-     * @return array<string, string|array>
+     * @return array
+     * @phpstan-ignore-next-line
      */
     public static function convertToArray(string $cfdi): array
     {
