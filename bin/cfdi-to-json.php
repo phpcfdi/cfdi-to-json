@@ -8,7 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 exit(call_user_func(function (string $command, string ...$arguments): int {
     $filename = $arguments[0] ?? '';
-    $contents = file_get_contents($filename);
+    $contents = file_get_contents($filename) ?: '';
     $document = new DOMDocument();
     /** @noinspection PhpUsageOfSilenceOperatorInspection */
     @$document->loadXML($contents);
