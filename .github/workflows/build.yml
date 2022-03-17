@@ -16,8 +16,6 @@ on:
 
 # Actions
 # shivammathur/setup-php@v2 https://github.com/marketplace/actions/setup-php-action
-# sonarsource/sonarcloud-github-action@master https://github.com/marketplace/actions/sonarcloud-scan
-# sudo-bot/action-scrutinizer@latest https://github.com/marketplace/actions/action-scrutinizer
 
 jobs:
   phpcs:
@@ -61,7 +59,7 @@ jobs:
         with:
           php-version: '8.0'
           coverage: none
-          tools: composer:v2, phpstan, cs2pr
+          tools: composer:v2, phpstan
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
@@ -103,11 +101,11 @@ jobs:
         run: bash bin/check-current-max-occurs-paths.bash
 
   tests:
-    name: Tests PHP ${{ matrix.php-versions }} (phpunit)
+    name: Tests on PHP ${{ matrix.php-versions }} (phpunit)
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        php-versions: ['7.3', '7.4', '8.1'] # php
+        php-versions: ['7.3', '7.4', '8.0', '8.1']
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -116,7 +114,7 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           coverage: none
-          tools: composer:v2, cs2pr
+          tools: composer:v2
         env:
           fail-fast: true
       - name: Get composer cache directory
@@ -133,60 +131,8 @@ jobs:
       - name: Tests
         run: vendor/bin/phpunit --testdox --verbose
 
-  tests-coverage:
-    name: Tests PHP 8.0 (code coverage)
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          coverage: xdebug
-          tools: composer:v2, cs2pr
-        env:
-          fail-fast: true
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install project dependencies
-        run: composer upgrade --no-interaction --no-progress --prefer-dist
-      - name: Create code coverage
-        run: vendor/bin/phpunit --testdox --verbose --coverage-xml=build/coverage --coverage-clover=build/coverage/clover.xml --log-junit=build/coverage/junit.xml
-      - name: Store code coverage
-        uses: actions/upload-artifact@v2
-        with:
-          name: code-coverage
-          path: build/coverage
-
-  scrutinizer:
-    name: Scrutinizer upload code coverage
-    needs: tests-coverage
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Obtain code coverage
-        uses: actions/download-artifact@v2
-        with:
-          name: code-coverage
-          path: build/coverage
-      - name: Upload code coverage to scrutinizer
-        uses: sudo-bot/action-scrutinizer@latest
-        with:
-          cli-args: "-vvv --format=php-clover build/coverage/clover.xml"
-        continue-on-error: true
-
   infection:
-    name: Mutation testing analysis
-    needs: tests-coverage
+    name: Mutation testing analysis (infection)
     runs-on: "ubuntu-latest"
     steps:
       - name: Checkout
@@ -208,52 +154,7 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install project dependencies
         run: composer upgrade --no-interaction --no-progress --prefer-dist
-      - name: Obtain code coverage
-        uses: actions/download-artifact@v2
-        with:
-          name: code-coverage
-          path: build/coverage
+      - name: Create code coverage
+        run: vendor/bin/phpunit --coverage-xml=build/coverage --coverage-clover=build/coverage/clover.xml --log-junit=build/coverage/junit.xml
       - name: infection
         run: infection --skip-initial-tests --coverage=build/coverage --no-progress --no-interaction --logger-github
-        continue-on-error: true
-
-  sonarcloud:
-    name: SonarCloud Scan and Report
-    needs: tests-coverage
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Unshallow clone to provide blame information
-        run: git fetch --unshallow
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          coverage: none
-          tools: composer:v2
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install project dependencies
-        run: composer upgrade --no-interaction --no-progress --prefer-dist
-      - name: Obtain code coverage
-        uses: actions/download-artifact@v2
-        with:
-          name: code-coverage
-          path: build/coverage
-      - name: Prepare SonarCloud Code Coverage Files
-        run: |
-          sed 's#'$GITHUB_WORKSPACE'#/github/workspace#g' build/coverage/junit.xml > build/sonar-junit.xml
-          sed 's#'$GITHUB_WORKSPACE'#/github/workspace#g' build/coverage/clover.xml > build/sonar-coverage.xml
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
