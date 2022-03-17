@@ -65,7 +65,12 @@ final class XsdMaxOccursFromNsRegistry
         if ([] === $paths) {
             return [];
         }
-        return array_merge(...$paths);
+
+        $entries = array_merge(...$paths);
+        sort($entries);
+        $entries = array_values(array_unique($entries));
+
+        return $entries;
     }
 
     /**
