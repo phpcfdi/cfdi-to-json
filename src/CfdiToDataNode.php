@@ -40,16 +40,16 @@ final class CfdiToDataNode
         return $this->convertElementoToDataNode($document->documentElement);
     }
 
-    private function convertElementoToDataNode(DOMElement $element, string $basePath = ''): Nodes\Node
+    private function convertElementoToDataNode(DOMElement $element): Nodes\Node
     {
-        $path = $this->buildPathForElement($element, $basePath);
+        $path = $this->buildPathForElement($element);
 
         // children to internal struct
         $convertionChildren = new Nodes\Children($this->unboundedOccursPaths);
         foreach ($element->childNodes as $childElement) {
             if ($childElement instanceof DOMElement) {
                 $convertionChildren->append(
-                    $this->convertElementoToDataNode($childElement, $path),
+                    $this->convertElementoToDataNode($childElement),
                 );
             }
         }
@@ -70,7 +70,7 @@ final class CfdiToDataNode
     {
         /**
          * phpstan does not recognize that DOMElement::attributes cannot be null
-         * @var DOMNamedNodeMap<DOMAttr> $elementAttributes
+         * @phpstan-var DOMNamedNodeMap<DOMAttr> $elementAttributes
          */
         $elementAttributes = $element->attributes;
 
@@ -81,8 +81,19 @@ final class CfdiToDataNode
         return $attributes;
     }
 
-    private function buildPathForElement(DOMElement $element, string $path): string
+    private function buildPathForElement(DOMElement $element): string
     {
-        return $path . '/' . $element->localName;
+        $namespace = $element->namespaceURI ?: '';
+        $parentsStack = [];
+
+        for ($current = $element; null !== $current; $current = $current->parentNode) {
+            if ($namespace !== $current->namespaceURI) {
+                break;
+            }
+
+            $parentsStack[] = $current->localName;
+        }
+
+        return sprintf('{%s}/%s', $namespace, implode('/', array_reverse($parentsStack)));
     }
 }

@@ -6,29 +6,16 @@ namespace PhpCfdi\CfdiToJson;
 
 final class UnboundedOccursPaths
 {
-    /** @var string[] */
+    /** @var array<string, int|string> */
     private $paths;
 
     public function __construct(string ...$paths)
     {
-        $this->paths = $paths;
+        $this->paths = array_flip($paths);
     }
 
     public function match(string $path): bool
     {
-        foreach ($this->paths as $test) {
-            if ($this->pathMatches($path, $test)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    public function pathMatches(string $subject, string $path): bool
-    {
-        // $subject: /foo/bar/xee/wii
-        // $path: /xee/wii
-        return (substr($subject, -strlen($path)) === $path);
+        return array_key_exists($path, $this->paths);
     }
 }
