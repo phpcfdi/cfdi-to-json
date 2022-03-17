@@ -2,19 +2,19 @@
 * text=auto
 
 # Do not put this files on a distribution package (by .gitignore)
-/tools/                 export-ignore
-/vendor/                export-ignore
-/composer.lock          export-ignore
-.phpunit.result.cache   export-ignore
+/tools/                     export-ignore
+/vendor/                    export-ignore
+/composer.lock              export-ignore
 
 # Do not put this files on a distribution package
-/.phive/                export-ignore
-/.github/               export-ignore
-/build/                 export-ignore
-/tests/                 export-ignore
-/.gitattributes         export-ignore
-/.gitignore             export-ignore
-/.php-cs-fixer.dist.php export-ignore
-/.scrutinizer.yml       export-ignore
-/phpcs.xml.dist         export-ignore
-/phpunit.xml.dist       export-ignore
+/.github/                   export-ignore
+/.phive/                    export-ignore
+/build/                     export-ignore
+/tests/                     export-ignore
+/.gitattributes             export-ignore
+/.gitignore                 export-ignore
+/.php-cs-fixer.dist.php     export-ignore
+/.scrutinizer.yml           export-ignore
+/phpcs.xml.dist             export-ignore
+/phpstan.neon.dist          export-ignore
+/phpunit.xml.dist           export-ignore

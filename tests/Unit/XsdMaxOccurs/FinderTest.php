@@ -16,11 +16,11 @@ final class FinderTest extends TestCase
         $paths = $finder->obtainPathsFromXsdContents($xsdContents);
 
         $expectedPaths = [
-            '/Document/Chapter',
-            '/Document/Chapter/Section',
-            '/Document/Authors/Author',
-            '/Document/Authors/Coauthor', // sequence
-            '/Document/Review/Status', // choice
+            '{http://tempuri.org/document}/Document/Chapter',
+            '{http://tempuri.org/document}/Document/Chapter/Section',
+            '{http://tempuri.org/document}/Document/Authors/Author',
+            '{http://tempuri.org/document}/Document/Authors/Coauthor', // sequence
+            '{http://tempuri.org/document}/Document/Review/Status', // choice
         ];
 
         $this->assertEquals($expectedPaths, $paths);

@@ -11,6 +11,17 @@
             "homepage": "https://github.com/phpcfdi/cfdi-to-json"
         }
     ],
+    "support": {
+        "source": "https://github.com/phpcfdi/cfdi-to-json",
+        "issues": "https://github.com/phpcfdi/cfdi-to-json/issues"
+    },
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": {
+            "*": "dist"
+        }
+    },
     "require": {
         "php": ">=7.3",
         "ext-dom": "*",
@@ -30,31 +41,33 @@
         }
     },
     "scripts": {
-        "dev:build": ["@dev:fix-style", "@dev:check-style", "@dev:test"],
+        "dev:build": ["@dev:fix-style", "@dev:test"],
         "dev:check-style": [
             "@php tools/php-cs-fixer fix --dry-run --verbose",
-            "@php tools/phpcs --colors -sp src/ tests/ bin/"
+            "@php tools/phpcs --colors -sp"
         ],
         "dev:fix-style": [
             "@php tools/php-cs-fixer fix --verbose",
-            "@php tools/phpcbf --colors -sp src/ tests/ bin/"
+            "@php tools/phpcbf --colors -sp"
         ],
         "dev:test": [
+            "@dev:check-style",
             "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
-            "@php tools/phpstan analyse --verbose --level max src/ tests/ bin/"
+            "@php tools/phpstan analyse --no-progress",
+            "@dev:infection"
         ],
         "dev:coverage": [
-            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-xml build/coverage/xml/ --coverage-html build/coverage/html/"
+            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --verbose --coverage-html build/coverage/html/"
         ],
         "dev:infection": [
-            "@php tools/infection --show-mutations --no-progress"
+            "@php tools/infection --no-progress --no-interaction --show-mutations"
         ]
     },
     "scripts-descriptions": {
         "dev:build": "DEV: run dev:fix-style and dev:tests, run before pull request",
         "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
         "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",
-        "dev:test": "DEV: run dev:fix-style, phpunit and phpstan",
+        "dev:test": "DEV: run dev:check-style, phpunit and phpstan",
         "dev:coverage": "DEV: run phpunit with xdebug and storage coverage in build/coverage/html/",
         "dev:infection": "DEV: run mutation tests using infection"
     }

@@ -1,87 +1,160 @@
 name: build
 on:
   pull_request:
-    branches:
-      - main
+    branches: [ "main" ]
   push:
-    branches:
-      - main
+    branches: [ "main" ]
     paths:
       - ".github/workflows/build.yml"
       - "bin/**"
       - "src/**"
       - "tests/**"
       - "composer.json"
-      - "*.dist"
+      - "*.dist*"
   schedule:
     - cron: '0 16 * * 0' # sunday 16:00
 
+# Actions
+# shivammathur/setup-php@v2 https://github.com/marketplace/actions/setup-php-action
+
 jobs:
-  build:
-    name: PHP ${{ matrix.php-versions }}
+  phpcs:
+    name: Code Style (phpcs)
     runs-on: "ubuntu-latest"
-
-    strategy:
-      matrix:
-        php-versions: ['7.3', '7.4', '8.0']
-
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
-
-      # see https://github.com/marketplace/actions/setup-php-action
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
-          extensions: dom, json
+          php-version: '8.0'
           coverage: none
-          tools: composer:v2, cs2pr, phive
-        env:
-          fail-fast: true
+          tools: composer:v2, phpcs, cs2pr
+      - name: phpcs
+        run: phpcs -q --report=checkstyle | cs2pr
 
+  php-cs-fixer:
+    name: Code Style (php-cs-fixer)
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer:v2, php-cs-fixer, cs2pr
+      - name: php-cs-fixer
+        run: php-cs-fixer fix --dry-run --format=checkstyle | cs2pr
+
+  phpstan:
+    name: Code analysis (phpstan)
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer:v2, phpstan
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-
-      - name: Composer cache dependencies
+      - name: Cache dependencies
         uses: actions/cache@v2
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
           restore-keys: ${{ runner.os }}-composer-
-
-      - name: Phive cache dependencies
-        uses: actions/cache@v2
-        with:
-          path: ~/.phive
-          key: ${{ runner.os }}-phive-${{ hashFiles('**/.phive/phars.xml') }}
-          restore-keys: ${{ runner.os }}-phive-
-
       - name: Install project dependencies
         run: composer upgrade --no-interaction --no-progress --prefer-dist
+      - name: phpstan
+        run: phpstan analyse --no-progress --verbose
 
-      - name: Install phive dependencies
-        run: |
-          phive install --force-accept-unsigned --trust-gpg-keys 0x4AA394086372C20A,0x31C7E470E2138192,0xE82B2FB314E9906E,0xCF1A108D0E7AE720,0xC5095986493B4AA0
-          git checkout -- .phive/phars.xml
-
+  check-current-max-occurs-paths:
+    name: Check src/UnboundedOccursPaths.json file
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer:v2
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install project dependencies
+        run: composer upgrade --no-interaction --no-progress --prefer-dist
       - name: Check src/UnboundedOccursPaths.json
         run: bash bin/check-current-max-occurs-paths.bash
 
-      - name: Code style (phpcs)
-        run: tools/phpcs -q --report=checkstyle bin/ src/ tests/ | cs2pr
-
-      - name: Code style (php-cs-fixer)
-        run: tools/php-cs-fixer fix --dry-run --format=checkstyle | cs2pr
-
-      - name: Tests (phpunit)
+  tests:
+    name: Tests on PHP ${{ matrix.php-versions }} (phpunit)
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix:
+        php-versions: ['7.3', '7.4', '8.0', '8.1']
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          coverage: none
+          tools: composer:v2
+        env:
+          fail-fast: true
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install project dependencies
+        run: composer upgrade --no-interaction --no-progress --prefer-dist
+      - name: Tests
         run: vendor/bin/phpunit --testdox --verbose
 
-      - name: Code analysis (phpstan)
-        run: tools/phpstan analyse --level max --no-progress --verbose bin/ src/ tests/
-
-      - name: Mutation testing (infection)
-        run: phpdbg -qrr tools/infection --no-progress --no-interaction --show-mutations --logger-github
-        continue-on-error: true
+  infection:
+    name: Mutation testing analysis (infection)
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: xdebug
+          tools: composer:v2, infection
+      - name: Get composer cache directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+      - name: Install project dependencies
+        run: composer upgrade --no-interaction --no-progress --prefer-dist
+      - name: Create code coverage
+        run: vendor/bin/phpunit --coverage-xml=build/coverage --coverage-clover=build/coverage/clover.xml --log-junit=build/coverage/junit.xml
+      - name: infection
+        run: infection --skip-initial-tests --coverage=build/coverage --no-progress --no-interaction --logger-github

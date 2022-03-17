@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PhpCfdi\CfdiToJson\XsdMaxOccurs;
 
+use DOMAttr;
 use DOMDocument;
 use DOMElement;
 use DOMNodeList;
@@ -11,10 +12,15 @@ use DOMXPath;
 
 final class Finder implements FinderInterface
 {
+    /** @var string */
+    private $targetNamespace = '';
+
     public function obtainPathsFromXsdContents(string $xsdContents): array
     {
         $document = new DOMDocument();
         $document->loadXML($xsdContents);
+
+        $this->targetNamespace = $this->findTargetNamespace($document);
 
         return array_merge(
             $this->obtainPathsForXPathQuery($document, '//x:element[@maxOccurs="unbounded"]'),
@@ -51,7 +57,7 @@ final class Finder implements FinderInterface
             $xsElement = $this->findParentElement($xsElement);
         }
 
-        return '/' . implode('/', array_reverse($pathItems));
+        return sprintf('{%s}/%s', $this->targetNamespace, implode('/', array_reverse($pathItems)));
     }
 
     private function findParentElement(DOMElement $node): ?DOMElement
@@ -63,5 +69,16 @@ final class Finder implements FinderInterface
             return $node;
         }
         return null;
+    }
+
+    private function findTargetNamespace(DOMDocument $document): string
+    {
+        $xpath = new DOMXPath($document);
+        $xpath->registerNamespace('x', 'http://www.w3.org/2001/XMLSchema');
+        /** @var DOMNodeList<DOMAttr> $targets */
+        $targets = $xpath->query('/x:schema/@targetNamespace') ?: new DOMNodeList();
+        /** @var DOMAttr|null $firstTarget */
+        $firstTarget = $targets->item(0);
+        return $firstTarget->value ?? '';
     }
 }

@@ -4,7 +4,7 @@
 
 Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta librería sin temor a romper tu aplicación.
 
-Pueden aparecer cambios no liberados que se integran a la rama principal pero no ameritan una nueva liberación de
+Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión aunque sí su incorporación en la rama principal de trabajo, generalmente se tratan de cambios en el desarrollo.
 
 ## Cambios no liberados en una versión
@@ -12,6 +12,25 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 No hay cambios no liberados. 
 
 ## Listado de cambios
+
+### Versión 0.3.0 2022-03-16
+
+Se ha descubierto un error en donde dos especificaciones de esquemas del SAT pueden chocar
+y en una definición tener nodos que no son múltiples y en otra versión que sí lo son.
+Por ejemplo, en CFDI 3.3 el nodo `CfdiRelacionados` solo puede aparecer 1 vez,
+mientras que en CFDI 4.0 su número de apariciones es ilimitado.
+
+Se corrige esta situación cambiando la forma de generar las rutas del archivo leído
+y cambiando las rutas extraídas de los archivos XSD. En ambos casos ahora se antepone
+el espacio de nombres XML, por ejemplo: `{http://www.sat.gob.mx/cfd/4}/Comprobante/CfdiRelacionados`.
+
+De igual forma, ahora el archivo `UnboundedOccursPaths.json` solo contiene entradas únicas y ordenadas.
+De esta forma la búsqueda de una coincidencia es mucho más rápida al usar las llaves de un arreglo,
+y será más fácil entender los cambios que ocurran en el archivo.
+
+Además, se le ha dado mantenimiento al proyecto actualizando los archivos de desarrollo,
+dependencias de las herramientas de desarrollo, flujo de trabajo de integración continua,
+licencia (feliz 2022) y probando la compatibilidad con PHP 8.1.
 
 ### Versión 0.2.2 2021-11-18
 
