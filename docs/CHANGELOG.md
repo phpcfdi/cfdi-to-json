@@ -13,6 +13,14 @@ No hay cambios no liberados.
 
 ## Listado de cambios
 
+### Versión 0.3.1 2022-04-04
+
+La herramienta PHPStan detectó un posible error de mal uso de la propiedad `DOMElement::localName` donde
+puede ser de los tipos `string` o `null`, pero solo se consideraba `string`.
+
+La herramienta PHPStan detectó un posible error de mal uso de la propiedad `DOMElement::parentNode` donde
+se verifica que la propiedad ahora sea de tipo `DOMElement`.
+
 ### Versión 0.3.0 2022-03-16
 
 Se ha descubierto un error en donde dos especificaciones de esquemas del SAT pueden chocar
