@@ -55,7 +55,7 @@ final class CfdiToDataNode
         }
 
         return new Nodes\Node(
-            $element->localName,
+            strval($element->localName),
             $path,
             $this->obtainAttributes($element),
             $convertionChildren,

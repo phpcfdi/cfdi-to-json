@@ -62,7 +62,7 @@ final class Finder implements FinderInterface
 
     private function findParentElement(DOMElement $node): ?DOMElement
     {
-        for ($node = $node->parentNode; null !== $node; $node = $node->parentNode) {
+        for ($node = $node->parentNode; $node instanceof DOMElement; $node = $node->parentNode) {
             if ('element' !== $node->localName || 'http://www.w3.org/2001/XMLSchema' !== $node->namespaceURI) {
                 continue;
             }
