@@ -8,6 +8,7 @@ use DOMAttr;
 use DOMDocument;
 use DOMElement;
 use DOMNamedNodeMap;
+use DOMText;
 use InvalidArgumentException;
 
 final class CfdiToDataNode
@@ -43,6 +44,7 @@ final class CfdiToDataNode
     private function convertElementoToDataNode(DOMElement $element): Nodes\Node
     {
         $path = $this->buildPathForElement($element);
+        $value = $this->extractValue($element);
 
         // children to internal struct
         $convertionChildren = new Nodes\Children($this->unboundedOccursPaths);
@@ -59,6 +61,7 @@ final class CfdiToDataNode
             $path,
             $this->obtainAttributes($element),
             $convertionChildren,
+            $value
         );
     }
 
@@ -95,5 +98,23 @@ final class CfdiToDataNode
         }
 
         return sprintf('{%s}/%s', $namespace, implode('/', array_reverse($parentsStack)));
+    }
+
+    private function extractValue(DOMElement $element): string
+    {
+        $values = [];
+        foreach ($element->childNodes as $childElement) {
+            if (! $childElement instanceof DOMText) {
+                continue;
+            }
+            $values[] = $childElement->wholeText;
+        }
+
+        $value = preg_replace(['/\s+/', '/^ +/', '/ +$/'], [' ', '', ''], implode('', $values));
+
+        if (is_null($value)) {
+            throw new \RuntimeException('An error occurred with preg_replace');
+        }
+        return $value;
     }
 }
