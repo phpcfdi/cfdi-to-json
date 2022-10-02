@@ -109,12 +109,6 @@ final class CfdiToDataNode
             }
             $values[] = $childElement->wholeText;
         }
-
-        $value = preg_replace(['/\s+/', '/^ +/', '/ +$/'], [' ', '', ''], implode('', $values));
-
-        if (is_null($value)) {
-            throw new \RuntimeException('An error occurred with preg_replace');
-        }
-        return $value;
+        return (string) preg_replace(['/\s+/', '/^ +/', '/ +$/'], [' ', '', ''], implode('', $values));
     }
 }

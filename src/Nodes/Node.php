@@ -58,10 +58,7 @@ final class Node
      */
     public function toArray(): array
     {
-        $array = $this->attributes + $this->children->toArray();
-        if ('' !== $this->getValue()) {
-            $array[''] = $this->getValue();
-        }
-        return $array;
+        $textArray = ('' !== $this->getValue()) ? ['' => $this->getValue()] : [];
+        return $textArray + $this->attributes + $this->children->toArray();
     }
 }

@@ -224,8 +224,8 @@ genera el siguiente JSON:
 {
   "orderIdentification": {
     "referenceIdentification": {
-      "type": "ON",
-      "": "3"
+      "": "3",
+      "type": "ON"
     }
   }
 }

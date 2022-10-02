@@ -81,8 +81,8 @@
         },
         "orderIdentification": {
           "referenceIdentification": {
-            "type": "ON",
-            "": "3"
+            "": "3",
+            "type": "ON"
           },
           "ReferenceDate": {
             "": "2017-01-01"
@@ -90,8 +90,8 @@
         },
         "AdditionalInformation": {
           "referenceIdentification": {
-            "type": "ATZ",
-            "": "2"
+            "": "2",
+            "type": "ATZ"
           }
         },
         "DeliveryNote": {
