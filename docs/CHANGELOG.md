@@ -21,7 +21,7 @@ Gracias `@gam04` por tu contribución.
 #### Cambios al entorno de desarrollo
 
 - Se actualizan las herramientas de desarrollo.
-- Se actualiza el flujo de trabajo de integración contínua:
+- Se actualiza el flujo de trabajo de integración continua:
   - Se utilizan las GitHub Actions versión 3.
   - Se corren los procesos en PHP 8.1.
   - Se elimina la dependencia de `composer` donde no se usa.

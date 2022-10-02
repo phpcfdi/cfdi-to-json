@@ -12,7 +12,7 @@ use DOMXPath;
 
 final class Finder implements FinderInterface
 {
-    const NS_XMLSCHEMA = 'http://www.w3.org/2001/XMLSchema';
+    private const NS_XMLSCHEMA = 'http://www.w3.org/2001/XMLSchema';
 
     /** @var string */
     private $targetNamespace = '';
