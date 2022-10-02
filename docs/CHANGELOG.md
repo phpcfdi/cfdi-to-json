@@ -13,6 +13,23 @@ No hay cambios no liberados.
 
 ## Listado de cambios
 
+### Versión 0.3.2 2022-10-01
+
+Permite la lectura del contenido de texto de los nodos, esto es porque el "Complemento Detallista"
+usa este tipo de estructura. Estos contenidos se consideran como espacios en blanco colapsados.
+
+Gracias `@gam04` por tu contribución.
+
+#### Cambios al entorno de desarrollo
+
+- Se actualizan las herramientas de desarrollo.
+- Se actualiza el flujo de trabajo de integración contínua:
+  - Se utilizan las GitHub Actions versión 3.
+  - Se corren los procesos en PHP 8.1.
+  - Se elimina la dependencia de `composer` donde no se usa.
+- Se actualiza el archivo de configuración de `php-cs-fixer`.
+- Se agrega la configuración en Git para que los finales de línea solo sean `LF`.
+
 ### Versión 0.3.1 2022-04-04
 
 La herramienta PHPStan detectó un posible error de mal uso de la propiedad `DOMElement::localName` donde

@@ -17,7 +17,7 @@ a formato JSON.
 
 Algunas de las convenciones que se siguen son:
 
-- Los elementos con objetos que contienen los atributos y sus elementos hijos.
+- Los elementos son objetos que contienen su valor, los atributos y sus elementos hijos.
 - Los elementos que pueden aparecer más de una vez, son manejados como arreglos.
 - La librería guarda un registro interno de los elementos que pueden aparecer más de una vez.
 
@@ -191,11 +191,11 @@ Note que:
 ## Funcionamiento interno
 
 La conversión parte de un objeto `DOMDocument` que es recorrido nodo a nodo y en cada transformación genera
-un objeto de tipo `Nodes\Node` que contiene sus propiedades básicas de nombre, ruta, atributos e hijos.
+un objeto de tipo `Nodes\Node` que contiene sus propiedades básicas de nombre, ruta, valor de texto, atributos e hijos.
 Los hijos (`Nodes\Children`) son una colección de nodos `Nodes\Node`.
 
 Al momento de exportar a un arreglo `Nodes\Node::toArray()` es cuando se resuelve si los nodos deben agregarse como
-llaves directas a objetos o bien como arreglos de objetos. 
+llaves directas a objetos, o bien, como arreglos de objetos. 
 
 ### Elementos con múltiples apariciones
 
@@ -207,9 +207,10 @@ de nombres del SAT de PhpCfdi [`phpcfdi/sat-ns-registry`](https://github.com/php
 los archivos XSD para interpretar las rutas que contienen `maxOccurs="unbounded"`.
 
 Desde 2021-03-22 se ha agregado un evento desde `phpcfdi/sat-ns-registry` para que notifique a este mismo repositorio
-de que el registro de espacios de nombres cambió.
+que el registro de espacios de nombres cambió.
 
 ### Nodos con texto
+
 El texto o valor que contenga algún nodo XML es exportado a una llave de cadena vacía en el JSON resultante.
 Por ejemplo, el siguiente XML:
 
@@ -218,7 +219,8 @@ Por ejemplo, el siguiente XML:
     <detallista:referenceIdentification type="ON">3</detallista:referenceIdentification>
 </detallista:orderIdentification>
 ```
-genera el siguiente JSON:
+
+Genera el siguiente JSON:
 
 ```json
 {
