@@ -9,8 +9,6 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Cambios no liberados en una versión
 
-No hay cambios no liberados. 
-
 ## Listado de cambios
 
 ### Versión 0.3.2 2022-10-01
@@ -29,6 +27,8 @@ Gracias `@gam04` por tu contribución.
   - Se elimina la dependencia de `composer` donde no se usa.
 - Se actualiza el archivo de configuración de `php-cs-fixer`.
 - Se agrega la configuración en Git para que los finales de línea solo sean `LF`.
+- Se integra el proyecto a [SonarCloud](https://sonarcloud.io/code?id=phpcfdi_cfdi-to-json).
+- Se elimina la integración con Scrutinizer CI a favor de SonarCloud. ¡Gracias Scrutinizer CI!.
 
 ### Versión 0.3.1 2022-04-04
 
