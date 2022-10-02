@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante
+        Certificado="MIIF0TCCA7mgAwIBAgIUMjAwMDEwMDAwMDAzMDAwMjI4MTYwDQYJKoZIhvcNAQELBQAwggFmMSAwHgYDVQQDDBdBLkMuIDIgZGUgcHJ1ZWJhcyg0MDk2KTEvMC0GA1UECgwmU2VydmljaW8gZGUgQWRtaW5pc3RyYWNpw7NuIFRyaWJ1dGFyaWExODA2BgNVBAsML0FkbWluaXN0cmFjacOzbiBkZSBTZWd1cmlkYWQgZGUgbGEgSW5mb3JtYWNpw7NuMSkwJwYJKoZIhvcNAQkBFhphc2lzbmV0QHBydWViYXMuc2F0LmdvYi5teDEmMCQGA1UECQwdQXYuIEhpZGFsZ28gNzcsIENvbC4gR3VlcnJlcm8xDjAMBgNVBBEMBTA2MzAwMQswCQYDVQQGEwJNWDEZMBcGA1UECAwQRGlzdHJpdG8gRmVkZXJhbDESMBAGA1UEBwwJQ295b2Fjw6FuMRUwEwYDVQQtEwxTQVQ5NzA3MDFOTjMxITAfBgkqhkiG9w0BCQIMElJlc3BvbnNhYmxlOiBBQ0RNQTAeFw0xNjEwMjUyMTU0MTlaFw0yMDEwMjUyMTU0MTlaMIG9MR4wHAYDVQQDExVNQiBJREVBUyBESUdJVEFMRVMgU0MxHjAcBgNVBCkTFU1CIElERUFTIERJR0lUQUxFUyBTQzEeMBwGA1UEChMVTUIgSURFQVMgRElHSVRBTEVTIFNDMSUwIwYDVQQtExxMQU44NTA3MjY4SUEgLyBGVUFCNzcwMTE3QlhBMR4wHAYDVQQFExUgLyBGVUFCNzcwMTE3TURGUk5OMDkxFDASBgNVBAsUC1BydWViYV9DRkRJMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjHr4KeoEx3BdkQP93AuN4fKo0rCZQsd9RJGBzQFvhmPJjGaVP81OUORM+lCRllxZxATZCAIFPOT3jl5wYgtolGYWWrt1HoAiuja1LKDGKrYgph0qWYKYeuew10fTyV+AeSbx1jTKz1PAAak06hx4M0rvmdiGO/Kg00/0wKz5/L3ZIMXEj+Hgr0IGh/yUIy8m5aKf+9jwuNttm/xDoeW3A8pxuidPU1Z1vliaZs75n89hC9LNwshhoaF3AvXIsgLDeuh9WoMGSm0HrilP9umFnm3nGUESiJa15Ep7LbG4CIhZrrknSm4fyrPk9KAigqLYMJhRsRwfp2qncAnAA+FuSQIDAQABox0wGzAMBgNVHRMBAf8EAjAAMAsGA1UdDwQEAwIGwDANBgkqhkiG9w0BAQsFAAOCAgEAd7t48tgawC9aczrGYt+4GFRcjj1LVKV3NElG+VH2s51KPkKPLj2Sw6OiEOGd+49spxHj1VR5MFvJo/pEJLY3EuLTifC9YZZYC8pHNDiA/eSvKqW5JNzp5/rgs3qAG1GrfdNGuSD3FkqhDdB6tJYqzTc12IC7xEAhKXrWZYCqa+zb9ogtzrUVL3vRRLMpnGEHK2yx8dhvG35qjHEfXyuoBsWILrVmnPpDCFO/CCLQB1OuMti1mlir6voBN0L1EbFK30w2bEuVihAeVLX8vVfMq4ZPI7UTLnblGnN11CCqiZkWhhehYrMdCjb5thMkEA+CMlIaFJYp7pNkLxQd4Y5+r8pTrdxxyvpA51DIWdoxvwaOiz1bzZk6ElVY2rfxwyZaJ17cJ1jmS4Yb5P4h8+5zkmZnPmRqfmaVO3nsApLWP6A38ZBrwwss429PJMSpfeXKGysPsqwF0yP3blsM7Cw53393LSHGKNm2GgG0kcrHnbbku6z6fjBdXMQQ5vjPuMNyw/pe3PzQLVoNOrD5AOoZmSG2TI3DtY4edLdiGmNQjo3MmAMMq4s7lr4AELPWAZRbnOlD1nEWGLdRp1mViteDvXwBL9E98EB4K9xK21DvgJ6rzw/D9rX6epeANfoXazWC0iCYcBNXiPikApcW73a/Jl/WjkEwEdkL/jLj0KCep58="
+        Fecha="2019-01-22T16:13:19" Folio="2" FormaPago="01" LugarExpedicion="45200" MetodoPago="PUE" Moneda="MXN"
+        NoCertificado="20001000000300022816"
+        Sello="i3rTWfK4yQQxqChb7AtT+DSVmJGcer3dR4yikzGq7qE8Z0sKggeh79BbMtZHlH1ltQX9KEL5o8Pl4zy4myj3z6idoU1m5rbD+3RgpW7M4zyQpIOPMThermHXHkpy7DoiX2sFeBJ2LJIEsYCaeWZaLqgwTlEboXk8ySOD8BqoSO2obtEyHVik5KZLwR8gfSujlxCkgbonzDl27VOcbjzzxHjLnL8230WT+JN32K1lY/cZvH5H2E0ClbOLhm3UluShxIBMktxTN+iRHNy0hPFXGBs2MB9esnVje9sTx+Q9YakrEnyQYuQaL/ZZtD4ryypsLASyleWdg4H1nUkI2RuEVw=="
+        Serie="U" SubTotal="5.95" TipoDeComprobante="I" Total="6.9" Version="3.3"
+        xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:detallista="http://www.sat.gob.mx/detallista"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/detallista http://www.sat.gob.mx/sitio_internet/cfd/detallista/detallista.xsd">
+    <cfdi:Emisor RegimenFiscal="601" Rfc="LAN8507268IA"/>
+    <cfdi:Receptor Nombre="MI RAZON SOCIAL" Rfc="XAXX010101000" UsoCFDI="P01"/>
+    <cfdi:Conceptos>
+        <cfdi:Concepto Cantidad="1" ClaveProdServ="47131806" ClaveUnidad="H87" Descripcion="industrial" Importe="5.95"
+                       NoIdentificacion="121" ValorUnitario="5.95">
+            <cfdi:Impuestos>
+                <cfdi:Traslados>
+                    <cfdi:Traslado Base="5.95" Importe="0.952" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+                </cfdi:Traslados>
+            </cfdi:Impuestos>
+        </cfdi:Concepto>
+    </cfdi:Conceptos>
+    <cfdi:Impuestos TotalImpuestosTrasladados="0.95">
+        <cfdi:Traslados>
+            <cfdi:Traslado Importe="0.952" Impuesto="002" TasaOCuota="0.160000" TipoFactor="Tasa"/>
+        </cfdi:Traslados>
+    </cfdi:Impuestos>
+    <cfdi:Complemento>
+        <detallista:detallista contentVersion="1.3.1" documentStatus="ORIGINAL" documentStructureVersion="AMC8.1"
+                               xmlns:detallista="http://www.sat.gob.mx/detallista"
+                               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <detallista:requestForPaymentIdentification>
+                <detallista:entityType>INVOICE</detallista:entityType>
+            </detallista:requestForPaymentIdentification>
+            <detallista:specialInstruction code="ZZZ">
+                <detallista:text>
+                     Un mil ciento sesenta pesos 00/100 m.n.
+                </detallista:text>
+            </detallista:specialInstruction>
+            <detallista:orderIdentification>
+                <detallista:referenceIdentification type="ON">3</detallista:referenceIdentification>
+                <detallista:ReferenceDate>2017-01-01</detallista:ReferenceDate>
+            </detallista:orderIdentification>
+            <detallista:AdditionalInformation>
+                <detallista:referenceIdentification type="ATZ">2</detallista:referenceIdentification>
+            </detallista:AdditionalInformation>
+            <detallista:DeliveryNote>
+                <detallista:referenceIdentification>1</detallista:referenceIdentification>
+                <detallista:ReferenceDate>2017-01-01</detallista:ReferenceDate>
+            </detallista:DeliveryNote>
+            <detallista:buyer>
+                <detallista:gln>7504000107903</detallista:gln>
+                <detallista:contactInformation>
+                    <detallista:personOrDepartmentName>
+                        <detallista:text>0101</detallista:text>
+                    </detallista:personOrDepartmentName>
+                </detallista:contactInformation>
+            </detallista:buyer>
+        </detallista:detallista>
+        <tfd:TimbreFiscalDigital FechaTimbrado="2019-01-23T14:11:43" NoCertificadoSAT="20001000000300022323"
+                                 RfcProvCertif="AAA010101AAA"
+                                 SelloCFD="i3rTWfK4yQQxqChb7AtT+DSVmJGcer3dR4yikzGq7qE8Z0sKggeh79BbMtZHlH1ltQX9KEL5o8Pl4zy4myj3z6idoU1m5rbD+3RgpW7M4zyQpIOPMThermHXHkpy7DoiX2sFeBJ2LJIEsYCaeWZaLqgwTlEboXk8ySOD8BqoSO2obtEyHVik5KZLwR8gfSujlxCkgbonzDl27VOcbjzzxHjLnL8230WT+JN32K1lY/cZvH5H2E0ClbOLhm3UluShxIBMktxTN+iRHNy0hPFXGBs2MB9esnVje9sTx+Q9YakrEnyQYuQaL/ZZtD4ryypsLASyleWdg4H1nUkI2RuEVw=="
+                                 SelloSAT="T9iwa7QE/gcE6Wn4+IDjNMhphy3fG0WhoR0453ZcV1DgBUp7eVPfuSkn6BmHX1OU0CSwjMuHyRskysV3AYSEDV+GWtYBK/xKr8WjJ68owwNSELKeCgcNsitRG9m2IpnFgxhOLG1gxizPW3jn0PP8ctyJl9Sj+DG+xWhbkNa0Mf1xt2vGtWrhaJgvN0CvdS9+gmwp2ju1bveX7aChvu7pJ+v3WxdAbbxunc5CsGleh+lWM9zw2xFVDUtSyCpR0HEQaWDw7KulYkoQLKBKLFM0PKC4Mg83hAgXhtpyzYjD/nl7Qc4SJKDtxAkNolGWkrC/PvHI1D1sbfMYwAfN6KOCfw=="
+                                 UUID="4c7a0582-5151-43b3-ba74-4e710479a1ee" Version="1.1"
+                                 xmlns:tfd="http://www.sat.gob.mx/TimbreFiscalDigital"
+                                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                 xsi:schemaLocation="http://www.sat.gob.mx/TimbreFiscalDigital http://www.sat.gob.mx/sitio_internet/cfd/TimbreFiscalDigital/TimbreFiscalDigitalv11.xsd"/>
+    </cfdi:Complemento>
+</cfdi:Comprobante>

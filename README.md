@@ -209,6 +209,28 @@ los archivos XSD para interpretar las rutas que contienen `maxOccurs="unbounded"
 Desde 2021-03-22 se ha agregado un evento desde `phpcfdi/sat-ns-registry` para que notifique a este mismo repositorio
 de que el registro de espacios de nombres cambió.
 
+### Nodos con texto
+El texto o valor que contenga algún nodo XML es exportado a una llave de cadena vacía en el JSON resultante.
+Por ejemplo, el siguiente XML:
+
+```xml
+<detallista:orderIdentification>
+    <detallista:referenceIdentification type="ON">3</detallista:referenceIdentification>
+</detallista:orderIdentification>
+```
+genera el siguiente JSON:
+
+```json
+{
+  "orderIdentification": {
+    "referenceIdentification": {
+      "": "3",
+      "type": "ON"
+    }
+  }
+}
+```
+
 ## Soporte
 
 Puedes obtener soporte abriendo un ticket en Github.

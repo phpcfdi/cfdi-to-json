@@ -18,18 +18,23 @@ final class Node
     /** @var array<string, string> */
     private $attributes;
 
+    /** @var string */
+    private $value;
+
     /**
      * @param string $key
      * @param string $path
      * @param array<string, string> $attributes
      * @param Children $children
+     * @param string $value
      */
-    public function __construct(string $key, string $path, array $attributes, Children $children)
+    public function __construct(string $key, string $path, array $attributes, Children $children, string $value = '')
     {
         $this->key = $key;
         $this->path = $path;
         $this->attributes = $attributes;
         $this->children = $children;
+        $this->value = $value;
     }
 
     public function getKey(): string
@@ -42,12 +47,18 @@ final class Node
         return $this->path;
     }
 
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+
     /**
      * @return array<string, string|array>
      * @phpstan-ignore-next-line
      */
     public function toArray(): array
     {
-        return $this->attributes + $this->children->toArray();
+        $textArray = ('' !== $this->getValue()) ? ['' => $this->getValue()] : [];
+        return $textArray + $this->attributes + $this->children->toArray();
     }
 }
