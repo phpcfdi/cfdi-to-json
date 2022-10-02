@@ -12,6 +12,8 @@ use DOMXPath;
 
 final class Finder implements FinderInterface
 {
+    const NS_XMLSCHEMA = 'http://www.w3.org/2001/XMLSchema';
+
     /** @var string */
     private $targetNamespace = '';
 
@@ -38,7 +40,7 @@ final class Finder implements FinderInterface
     {
         $paths = [];
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('x', 'http://www.w3.org/2001/XMLSchema');
+        $xpath->registerNamespace('x', self::NS_XMLSCHEMA);
         $nodes = $xpath->query($query) ?: new DOMNodeList();
         foreach ($nodes as $node) {
             if ($node instanceof DOMElement) {
@@ -63,7 +65,7 @@ final class Finder implements FinderInterface
     private function findParentElement(DOMElement $node): ?DOMElement
     {
         for ($node = $node->parentNode; $node instanceof DOMElement; $node = $node->parentNode) {
-            if ('element' !== $node->localName || 'http://www.w3.org/2001/XMLSchema' !== $node->namespaceURI) {
+            if ('element' !== $node->localName || self::NS_XMLSCHEMA !== $node->namespaceURI) {
                 continue;
             }
             return $node;
@@ -74,7 +76,7 @@ final class Finder implements FinderInterface
     private function findTargetNamespace(DOMDocument $document): string
     {
         $xpath = new DOMXPath($document);
-        $xpath->registerNamespace('x', 'http://www.w3.org/2001/XMLSchema');
+        $xpath->registerNamespace('x', self::NS_XMLSCHEMA);
         /** @var DOMNodeList<DOMAttr> $targets */
         $targets = $xpath->query('/x:schema/@targetNamespace') ?: new DOMNodeList();
         /** @var DOMAttr|null $firstTarget */
