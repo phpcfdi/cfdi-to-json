@@ -1,5 +1,5 @@
 # Auto detect text files and perform LF normalization
-* text=auto
+* text=auto eol=lf
 
 # Do not put this files on a distribution package (by .gitignore)
 /tools/                     export-ignore
@@ -18,3 +18,6 @@
 /phpcs.xml.dist             export-ignore
 /phpstan.neon.dist          export-ignore
 /phpunit.xml.dist           export-ignore
+
+# Do not count these files on github code language
+/tests/_files/**            linguist-detectable=false
