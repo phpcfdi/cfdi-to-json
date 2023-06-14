@@ -39,14 +39,29 @@ final class XsdMaxOccursFromNsRegistryTest extends TestCase
                 '/second/foo/bar/baz',
                 '/second/foo/bar/xee',
             ],
+            [
+                '/repeated/foo/bar/baz',
+            ],
+            [
+                '/repeated/foo/bar/baz',
+            ],
         );
 
         /** @var DownloaderInterface&MockObject $downloader */
         $downloader = $this->createMock(DownloaderInterface::class);
         $downloader->method('get')->willReturn(
-            '[{"xsd": "http://fake/first.xsd"}, {"xsd": "http://fake/second.xsd"}]',
+            <<< JSON
+                [
+                    {"xsd": "http://fake/first.xsd"},
+                    {"xsd": "http://fake/second.xsd"},
+                    {"xsd": "http://fake/repeated.xsd"},
+                    {"xsd": "http://fake/repeated.xsd"}
+                ]
+                JSON,
             'first',
             'second',
+            'repeated',
+            'repeated',
         );
 
         $location = 'http://fake/registry';
@@ -55,6 +70,7 @@ final class XsdMaxOccursFromNsRegistryTest extends TestCase
         $expectedPaths = [
             '/first/foo/bar/baz',
             '/first/foo/bar/xee',
+            '/repeated/foo/bar/baz',
             '/second/foo/bar/baz',
             '/second/foo/bar/xee',
         ];
