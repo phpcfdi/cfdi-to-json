@@ -1,5 +1,6 @@
 name: sat-ns-registry-update
 on:
+  workflow_dispatch:
   repository_dispatch:
     types:
       - sat-ns-registry-update
