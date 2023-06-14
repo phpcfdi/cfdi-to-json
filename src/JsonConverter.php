@@ -20,8 +20,7 @@ final class JsonConverter
         string $cfdi,
         int $jsonOptions = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES
     ): string {
-        // Cast to string because phpstan does not recognize that it cannot return FALSE because JSON_THROW_ON_ERROR
-        return (string) json_encode(self::convertToArray($cfdi), $jsonOptions | JSON_THROW_ON_ERROR);
+        return json_encode(self::convertToArray($cfdi), $jsonOptions | JSON_THROW_ON_ERROR);
     }
 
     /**
