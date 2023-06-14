@@ -32,7 +32,8 @@ final class FactoryTest extends TestCase
     public function testCreateUnboundedOccursPathsUsingJsonFileUsingInvalidFileWithErrorReporting(): void
     {
         $factory = new Factory(new UnboundedOccursPaths());
-        $this->expectWarning();
+        $this->expectException(LogicException::class);
+        $this->expectExceptionMessage('Unable to open file');
         $factory->createUnboundedOccursPathsUsingJsonFile(__DIR__ . '/not-found');
     }
 

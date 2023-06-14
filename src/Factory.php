@@ -35,7 +35,8 @@ final class Factory
 
     public function createUnboundedOccursPathsUsingJsonFile(string $sourceFile): UnboundedOccursPaths
     {
-        $contents = file_get_contents($sourceFile);
+        /** @noinspection PhpUsageOfSilenceOperatorInspection */
+        $contents = @file_get_contents($sourceFile);
         if (false === $contents) {
             throw new LogicException("Unable to open file $sourceFile");
         }
@@ -56,7 +57,7 @@ final class Factory
      */
     public function createUnboundedOccursPathsUsingJsonSource(string $contents): UnboundedOccursPaths
     {
-        $sourcePaths = json_decode(strval($contents), true, 512, JSON_THROW_ON_ERROR);
+        $sourcePaths = json_decode($contents, true, 512, JSON_THROW_ON_ERROR);
 
         if (! is_array($sourcePaths)) {
             throw new LogicException('JSON does not contains an array of entries');
