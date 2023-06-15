@@ -11,6 +11,26 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Listado de cambios
 
+### Versión 0.3.3 2022-06-14
+
+Cuando se busca abrir un archivo para obtener las rutas sin límite, se lanza una excepción si no se pudo 
+abrir el archivo, anteriormente se lanzaba un *warning* de la función `get_file_contents`.
+
+Los siguientes cambios no modifican el código fuente.
+
+- Se actualiza el archivo de licencia.
+- Se elimina una conversión a cadena de texto innecesaria introducida para satisfacer a PHPStan.
+- Se agrega una prueba para comprobar que al generar paths repetidos se devuelve un arreglo secuencial.
+- Se corrige la insignia de construcción en el archivo `README.md`.
+- En los flujos de trabajo de GitHub:
+  - Se agrega PHP 8.2 a la matriz de pruebas.
+  - Se ejecutan los trabajos en PHP 8.2.
+  - Se agrega la habilidad de ejecutar un flujo de trabajo a petición.
+  - Se sustituye la directiva `::set-output` con `$GITHUB_OUTPUT`.
+  - Se utilizan las acciones de GitHub versión 3.
+- Se corrige la configuración de SonarCloud.
+- Se actualizan las herramientas de desarrollo.
+
 ### Versión 0.3.2 2022-10-01
 
 Permite la lectura del contenido de texto de los nodos, esto es porque el "Complemento Detallista"
