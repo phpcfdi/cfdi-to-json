@@ -11,6 +11,10 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Listado de cambios
 
+### Versión 0.3.4 2023-10-22
+
+- Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento *Carta Porte 3.0*.
+
 ### Versión 0.3.3 2022-06-14
 
 Cuando se busca abrir un archivo para obtener las rutas sin límite, se lanza una excepción si no se pudo 
