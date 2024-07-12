@@ -11,6 +11,19 @@ versión aunque sí su incorporación en la rama principal de trabajo, generalme
 
 ## Listado de cambios
 
+### Versión 0.3.5 2024-07-11
+
+- Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento *Carta Porte 3.1*.
+
+Los siguientes cambios no modifican el código fuente.
+
+- Se actualiza el archivo de licencia.
+- En los flujos de trabajo de GitHub:
+  - Se agrega PHP 8.3 a la matriz de pruebas.
+  - Se ejecutan los trabajos en PHP 8.3.
+  - Se utilizan las acciones de GitHub versión 4.
+- Se actualizan las herramientas de desarrollo.
+
 ### Versión 0.3.4 2023-10-22
 
 - Se actualiza el archivo `UnboundedOccursPaths.json` porque se incluyó el nuevo complemento *Carta Porte 3.0*.
