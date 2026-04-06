@@ -42,7 +42,11 @@ final class Children
             if ($this->isChildrenMultiple($item)) {
                 $children[$item->getKey()][] = $item->toArray();
             } else {
-                $children[$item->getKey()] = $item->toArray();
+                if (isset($children[$item->getKey()]) && is_array($children[$item->getKey()])) {
+                    $children[$item->getKey()][] = $item->toArray();
+                } else {
+                    $children[$item->getKey()] = $item->toArray();
+                }
             }
         }
 
